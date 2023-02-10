@@ -8,7 +8,7 @@ while True:
     _,img = cam.read()
     cv2.imshow("cameraFeed",img)
     key = cv2.waitKey(1) & 0xFF
-    if key == ord("q"):
+    if key == ord(" "):
         break
 
 cam.release()
