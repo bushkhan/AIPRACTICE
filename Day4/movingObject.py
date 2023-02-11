@@ -2,9 +2,7 @@ import cv2
 import time
 import imutils
 cam = cv2.VideoCapture(0,cv2.CAP_DSHOW)
-
 time.sleep(1)
-
 firstFrame = None
 area = 500
 
