@@ -5,7 +5,6 @@ cam = cv2.VideoCapture(0,cv2.CAP_DSHOW)
 time.sleep(1)
 firstFrame = None
 area = 500
-
 while True:
     _,img = cam.read()
     text = "Normal"
