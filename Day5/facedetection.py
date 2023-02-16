@@ -26,10 +26,13 @@ while count < 5:
 
     for (x,y,w,h) in face:
         cv2.rectangle( img, (x,y), (x+w,y+h), (0,255,0), 2)
+
         faceOnly = gray[y:y+h, x:x+w]
         resizeimg = cv2.resize(faceOnly,(width,height))
-        cv2.imwrite("%s\\%s.jpg" %(path,count),resizeimg)
+
+        cv2.imwrite("%s/%s.jpg" %(path,count),resizeimg)
         count+=1
+
     cv2.imshow("FaceDetection",img)
     key = cv2.waitKey(10)
     if key == 27:
@@ -37,3 +40,4 @@ while count < 5:
 print("Image captured")
 cam.release()
 cv2.destroyAllWindows()
+
