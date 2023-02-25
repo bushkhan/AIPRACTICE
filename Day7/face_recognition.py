@@ -21,9 +21,9 @@ for(subdirs, dirs, files) in os.walk(datasets):
 (images, labels) = [numpy.array(lis) for lis in [images, labels]]
 print(images, labels)
 (width,height) = (130,100)
-model = cv2.face.LBPHFaceRecognizer_create()
+recognizer = cv2.face.LBPHFaceRecognizer_create()
 
-model.train(images, labels)
+recognizer.train(images, labels)
 
 webcam = cv2.VideoCapture(0,cv2.CAP_DSHOW)
 cnt = 0
@@ -40,22 +40,20 @@ while True:
         faceOnly = gray[y:y+h, x:x+w]
         face_resize = cv2.resize(faceOnly,(width,height))
 
-        prediction = model.predict(face_resize)
-        cv2.rectangle(im, (x,y), (x + w, y+ h), (0, 255, 0))
+        prediction = recognizer.predict(face_resize)
+        cv2.rectangle(im, (x,y), (x + w, y+ h), (0, 255, 0), 3)
         if prediction[1]<800:
             cv2.putText(im,'%s - %.0f' % (names[prediction[0]], prediction[1]), (x-10, y-10), cv2.FONT_HERSHEY_PLAIN,2,(0, 0, 255))
-            print(names[prediction[0]])
             cnt = 0
         else:
             cnt +=1
-            cv2.putText(im,'Unknown', (x-10, y-10), cv2.FONT_HERSHEY_PLAIN,2,(0, 0, 255))
+            cv2.putText(im,'Unknown', (x-10, y-10), cv2.FONT_HERSHEY_PLAIN,1,(0, 0, 255))
             if(cnt>100):
-                print("Unknown Person")
                 cv2.imwrite("unknown.jpg",im)
                 cnt = 0
-    cv2.imshow('Face Recognition',im)
+    cv2.imshow('FaceRecognition',im)
     key = cv2.waitKey(10)
-    if key == 'q':
+    if key == 27:
         break
 webcam.release()
 cv2.destroyAllWindows()
