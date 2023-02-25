@@ -17,7 +17,7 @@ cam = cv2.VideoCapture(0,cv2.CAP_DSHOW)
 
 count = 1
 
-while count < 5:
+while count < 31:
     print(count)
     _,img = cam.read()
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
