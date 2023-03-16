@@ -4,7 +4,6 @@ import cv2
 er = EmotionRecognition(device='cpu')
 
 cam = cv2.VideoCapture(0,cv2.CAP_DSHOW)
-
 while True:
     success, frame = cam.read()
     frame1 = er.recognise_emotion(frame, return_type='BGR')
